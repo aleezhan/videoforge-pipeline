@@ -74,9 +74,9 @@ LOCK_FILE = ".run.lock"
 # Age-based staleness is wrong both ways: a long local run outlives any threshold
 # and loses protection, while a killed process blocks the episode until it expires.
 # The OS releases the lock the moment the process dies, which gives honest crash
-# recovery without any heartbeat. The locked byte lies far past the end of the file
-# so its contents (who is doing what) stay readable to refused callers, who need
-# them for the "busy" message.
+# recovery without any heartbeat. On Windows (mandatory byte-range locks) the locked
+# byte lies far past the end of the file so its contents (who is doing what) stay
+# readable to refused callers, who need them for the "busy" message.
 LOCK_BYTE = 1 << 20
 
 if sys.platform == "win32":  # pragma: no cover - branch chosen by platform
@@ -98,16 +98,23 @@ if sys.platform == "win32":  # pragma: no cover - branch chosen by platform
 else:  # pragma: no cover - branch chosen by platform
     import fcntl
 
+    # flock(), not lockf()/fcntl(): POSIX record locks belong to the *process*, so a
+    # second open of the file in the same process "succeeds" (running() would never
+    # see its own process's run), and closing *any* descriptor of the file, even the
+    # one `_owner()` reads through, silently drops the lock. flock() locks belong to
+    # the open file description, which matches the msvcrt semantics: a separate
+    # open() conflicts, and only closing our own descriptor releases the lock. The
+    # lock is advisory, so the contents stay readable without the byte offset trick.
     def _take(fd: int) -> bool:
         try:
-            fcntl.lockf(fd, fcntl.LOCK_EX | fcntl.LOCK_NB, 1, LOCK_BYTE, os.SEEK_SET)
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:
             return False
         return True
 
     def _drop(fd: int) -> None:
         with contextlib.suppress(OSError):
-            fcntl.lockf(fd, fcntl.LOCK_UN, 1, LOCK_BYTE, os.SEEK_SET)
+            fcntl.flock(fd, fcntl.LOCK_UN)
 
 
 class Busy(RuntimeError):
@@ -148,6 +155,16 @@ def running(episode_dir: Path) -> dict[str, object] | None:
         os.close(fd)
 
 
+def _same_file(fd: int, path: Path) -> bool:
+    """Whether the locked descriptor is still the file found at `path`."""
+    try:
+        st = os.stat(path)
+    except OSError:
+        return False
+    fst = os.fstat(fd)
+    return (st.st_dev, st.st_ino) == (fst.st_dev, fst.st_ino)
+
+
 @contextlib.contextmanager
 def episode_lock(episode_dir: Path, *, what: str = "") -> Iterator[Path]:
     """One run per episode.
@@ -165,14 +182,22 @@ def episode_lock(episode_dir: Path, *, what: str = "") -> Iterator[Path]:
     construction, and the file is removed only by the process that took it."""
     episode_dir.mkdir(parents=True, exist_ok=True)
     path = lock_path(episode_dir)
-    fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o644)
-    if not _take(fd):
-        busy = _owner(path)
+    while True:
+        fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o644)
+        if not _take(fd):
+            busy = _owner(path)
+            os.close(fd)
+            raise Busy(
+                f"над эпизодом уже идёт работа: {busy.get('what') or 'прогон'} "
+                f"(pid {busy.get('pid')}, начат {busy.get('started')})"
+            )
+        if _same_file(fd, path):
+            break
+        # On POSIX the previous owner may unlink the file between our open() and our
+        # lock: we then hold a lock on an orphaned inode that nobody else can see,
+        # while a third process locks a fresh file at the same path. Start over.
+        _drop(fd)
         os.close(fd)
-        raise Busy(
-            f"над эпизодом уже идёт работа: {busy.get('what') or 'прогон'} "
-            f"(pid {busy.get('pid')}, начат {busy.get('started')})"
-        )
     try:
         body = json.dumps({"pid": os.getpid(), "started": now().isoformat(), "what": what}).encode(
             "utf-8"
