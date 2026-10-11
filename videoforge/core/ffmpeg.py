@@ -1094,6 +1094,9 @@ def slow_tail(video: Path, out: Path, tail: SlowTail, *, fps: float = FPS) -> fl
     # окажется на длину замедления короче звука (поймано замером av_drift:
     # +2.354 с при хвосте 2.3 с)
     vt.append(f"setpts=PTS/{speed:.4f},fps={fps_expr(fps)}")
+    # `fps` после склейки тоже нужен: в ffmpeg 7.0 `setpts` сбрасывает частоту
+    # ветки в «неизвестно», и выход без явной частоты кодируется в 25 к/с
+    # (сборка imageio-ffmpeg под Linux: 150 кадров вместо 144 на 6 с)
 
     if tail.pitch_drop:
         # asetrate — это замедленная плёнка: вместе со скоростью падает высота
@@ -1106,7 +1109,7 @@ def slow_tail(video: Path, out: Path, tail: SlowTail, *, fps: float = FPS) -> fl
         f"[0:a]atrim=0:{cut:.3f},asetpts=PTS-STARTPTS[ah];"
         f"[0:a]atrim={cut:.3f},asetpts=PTS-STARTPTS,{at}[at];"
         f"[vh][ah][vt][at]concat=n=2:v=1:a=1[vc][ac];"
-        f"[vc]tpad=stop_mode=clone:stop_duration=0.3[v];"
+        f"[vc]fps={fps_expr(fps)},tpad=stop_mode=clone:stop_duration=0.3[v];"
         f"[ac]apad=pad_dur=0.3[a]"
     )
     run([
@@ -1316,10 +1319,11 @@ def build_scene_video(
     total = sum(c.seconds for c in cuts)
     # точная длина: на границах отрезков seek и fps теряют по кадру (замерено:
     # 5.88 с вместо 6.0 на двух отрезках), поэтому хвост подкладывается клоном
-    # последнего кадра и режется ровно по сумме длин
+    # последнего кадра и режется ровно по сумме длин. `fps` после склейки: в
+    # ffmpeg 7.0 `setpts` теряет частоту, и без него выход выходит 25 к/с
     graph = (
-        ";".join(parts)
-        + f";{labels}concat=n={len(cuts)}:v=1:a=0,tpad=stop_mode=clone:stop_duration=0.5[v]"
+        ";".join(parts) + f";{labels}concat=n={len(cuts)}:v=1:a=0,fps={fps_expr(fps)},"
+        "tpad=stop_mode=clone:stop_duration=0.5[v]"
     )
     run([*inputs, "-filter_complex", graph, "-map", "[v]", "-t", f"{total:.3f}", "-an",
          "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", str(out)])  # fmt: skip
