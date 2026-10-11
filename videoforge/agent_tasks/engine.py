@@ -32,7 +32,7 @@ def executable(agent: str) -> str | None:
     if found:
         return found
     # Codex desktop updates its versioned bin directory; resolve on every launch.
-    if agent == "codex" and os.name == "nt":
+    if agent == "codex" and sys.platform == "win32":
         base = Path(os.environ.get("LOCALAPPDATA", "")) / "OpenAI/Codex/bin"
         candidates = sorted(base.glob("*/codex.exe"), key=lambda p: p.stat().st_mtime)
         return str(candidates[-1]) if candidates else None
@@ -68,7 +68,7 @@ def launch(task_id: str, token: str) -> None:
     env["PYTHONPATH"] = str(ROOT)
     env["PYTHONIOENCODING"] = "utf-8"
     kwargs: dict[str, Any] = {}
-    if os.name == "nt":
+    if sys.platform == "win32":
         kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW
     else:
         kwargs["start_new_session"] = True
@@ -266,7 +266,7 @@ def arguments(agent: str, phase: str, folder: Path) -> list[str]:
 def terminate(proc: subprocess.Popen[str]) -> None:
     if proc.poll() is not None:
         return
-    if os.name == "nt":
+    if sys.platform == "win32":
         subprocess.run(
             ["taskkill", "/PID", str(proc.pid), "/T", "/F"],
             capture_output=True,
@@ -291,13 +291,11 @@ def call(task: dict[str, Any], token: str) -> Reply:
     args = arguments(agent, phase, folder)
     env = os.environ.copy()
     env.pop("CLAUDECODE", None)
-    options: dict[str, Any] = (
-        {"creationflags": subprocess.CREATE_NO_WINDOW}
-        if os.name == "nt"
-        else {
-            "start_new_session": True,
-        }
-    )
+    options: dict[str, Any]
+    if sys.platform == "win32":
+        options = {"creationflags": subprocess.CREATE_NO_WINDOW}
+    else:
+        options = {"start_new_session": True}
     with (
         (folder / "stdout.txt").open("w", encoding="utf-8") as stdout,
         (folder / "stderr.txt").open("w", encoding="utf-8") as stderr,

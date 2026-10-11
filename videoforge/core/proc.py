@@ -17,10 +17,10 @@
 
 from __future__ import annotations
 
-import os
 import subprocess
+import sys
 from typing import Any
 
-NO_WINDOW: dict[str, Any] = (
-    {"creationflags": subprocess.CREATE_NO_WINDOW} if os.name == "nt" else {}
-)
+NO_WINDOW: dict[str, Any] = {}
+if sys.platform == "win32":
+    NO_WINDOW["creationflags"] = subprocess.CREATE_NO_WINDOW

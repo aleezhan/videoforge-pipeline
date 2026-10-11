@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 import threading
 import time
 import uuid
@@ -34,7 +35,7 @@ def execution_lock() -> Iterator[None]:
     root().mkdir(parents=True, exist_ok=True)
     with (root() / ".execution.lock").open("a+b") as stream:
         busy = "Предыдущий исполнитель ещё работает. Дождитесь остановки."
-        if os.name == "nt":
+        if sys.platform == "win32":
             import msvcrt
 
             stream.seek(0)
@@ -76,7 +77,7 @@ def locked() -> Iterator[None]:
         root().mkdir(parents=True, exist_ok=True)
         # Never unlink a lock file: another process may already have it open.
         with (root() / ".state.lock").open("a+b") as stream:
-            if os.name == "nt":
+            if sys.platform == "win32":
                 import msvcrt
 
                 deadline = time.monotonic() + 10
