@@ -12,7 +12,7 @@ from pathlib import Path
 from conftest import make_test_video
 
 from videoforge.core.ffmpeg import probe_size
-from videoforge.core.preview import busiest_caption_sec, preview_frame, zone_filters
+from videoforge.core.preview import busiest_caption_sec, label_image, preview_frame, zone_filters
 
 ASS = """[Script Info]
 PlayResX: 1080
@@ -28,10 +28,11 @@ Dialogue: 0,0:00:20.00,0:00:21.00,Default,,0,0,0,,{\\fad(60,60)}снова ко�
 
 def test_zones_are_drawn_from_the_platform_numbers() -> None:
     zone = {"top": 0.0, "bottom": 0.15, "right": 0.15}
-    f = zone_filters(zone, (1080, 1920), label="YouTube Shorts")
+    f = zone_filters(zone, (1080, 1920))
     assert "drawbox=x=0:y=1632:w=1080:h=288" in f  # низ: 15% от 1920
     assert "drawbox=x=918:y=0:w=162:h=1920" in f  # право: 15% от 1080
-    assert "drawtext" in f and "YouTube Shorts" in f
+    # подпись рисует Pillow: `drawtext` есть не в каждой сборке ffmpeg
+    assert "drawtext" not in f
     # безопасная область очерчена, а не залита
     safe = [p for p in f.split(",") if "t=fill" not in p and p.startswith("drawbox")]
     assert len(safe) == 1 and "w=918:h=1632" in safe[0]
@@ -39,6 +40,17 @@ def test_zones_are_drawn_from_the_platform_numbers() -> None:
     # нулевая зона не рисуется вовсе
     empty = zone_filters({"top": 0.0, "bottom": 0.0, "right": 0.0}, (1080, 1920))
     assert empty.count("drawbox") == 1  # только рамка безопасной области
+
+
+def test_label_is_a_picture_not_an_ffmpeg_filter(tmp_path: Path) -> None:
+    """Сборка imageio-ffmpeg под Linux без libfreetype: `drawtext` там нет."""
+    from PIL import Image
+
+    png = label_image("YouTube Shorts", tmp_path / "label.png")
+    assert png is not None
+    with Image.open(png) as image:
+        assert image.mode == "RGBA" and image.width > image.height > 0
+    assert label_image("", tmp_path / "none.png") is None
 
 
 def test_busiest_caption_is_the_longest_line(tmp_path: Path) -> None:
