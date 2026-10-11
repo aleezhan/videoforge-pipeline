@@ -1,0 +1,24 @@
+# «Black Vortex» Кевина Маклауда — оркестровый гибрид в 7/8: начинается
+# медленно и веско, к 45-й секунде разгоняется до предела. Ровнее, чем
+# devastation_and_revenge: явного дропа нет, уровень растёт постепенно
+# (−25 дБ на старте → −14 дБ к 45 с, замерено окнами по 5 с). Берут тогда,
+# когда музыка должна вести весь ролик, а не вступать в кульминации.
+#
+# ЛИЦЕНЗИЯ ТРЕБУЕТ УПОМИНАНИЯ (CC BY 4.0): строка `attribution` уходит в
+# 06_publish/publish.md и обязана попасть в описание ролика.
+# Content ID: заявка возможна и снимается —
+# https://incompetech.com/music/royalty-free/youtube-contentid.html
+id: black_vortex
+name: "Black Vortex (Kevin MacLeod)"
+file: black_vortex.mp3
+license: "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) — упоминание автора обязательно"
+source: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Black%20Vortex.mp3"
+attribution: "Музыка: «Black Vortex» — Kevin MacLeod (incompetech.com), лицензия CC BY 4.0"
+mood: "тёмная, разгоняющаяся"
+energy: 0.9
+bpm: 163
+drop_sec: 40.0                # к этой секунде трек выходит на полную
+loop_ok: false
+tags: [cinematic, epic, dark, orchestral, driving]
+gain_db: -14.0
+duck_db: 9.0

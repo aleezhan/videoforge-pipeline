@@ -1,0 +1,25 @@
+{
+  "name": "videoforge-motion",
+  "private": true,
+  "description": "Программный motion-слой videoforge: кадр сцены -> клип (Ken Burns). Рендерится провайдером remotion_video через `npx remotion render`.",
+  "scripts": {
+    "studio": "remotion studio --no-open",
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.8.1",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "4.0.519",
+    "@remotion/three": "4.0.519",
+    "@types/three": "^0.186.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "^4.0.0",
+    "three": "^0.186.1",
+    "zod": "3.22.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.5.0"
+  }
+}

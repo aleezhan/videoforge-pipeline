@@ -1,0 +1,7 @@
+id: ru_female
+name: Русский женский (Светлана, edge-tts)
+provider: edge
+voice: ru-RU-SvetlanaNeural
+rate: "+0%"
+pitch: "+0Hz"
+language: ru

@@ -1,0 +1,20 @@
+# Нарастающий низкий гул земли, которая сжимается: 4 с, уровень растёт
+# квадратично и ОБРЫВАЕТСЯ на 3.95 с за 40 мс — обрыв ставить на склейку или
+# на слово. Коричневый шум под lowpass 160 Гц + два низких тона с медленным
+# биением (36 и 43 Гц) + «скрежет грунта»: шум 180–600 Гц, дрожащий неровно
+# (7.3 и 12.1 Гц) — он же несёт звук на динамике телефона.
+#
+# Звук синтезирован локально ffmpeg (anoisesrc + aevalsrc): у него нет автора,
+# кроме формулы, поэтому прав ни у кого нет. Это НЕ музыкальный райзер:
+# тона без высоты, слышен как гул, а не как нота.
+# Рецепт: resources/sfx/_src/build_grave_sfx.py, картинка волны и спектра:
+# resources/sfx/_preview/rumble_squeeze.png. Пик −3 dBFS, 48 кГц стерео.
+id: rumble_squeeze
+name: "Гул сжимающейся земли"
+file: rumble_squeeze.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "synthesized: ffmpeg anoisesrc + aevalsrc, resources/sfx/_src/build_grave_sfx.py"
+kind: riser
+duration_sec: 4
+gain_db: -6    # уровень в миксе относительно голоса
+tags: [rumble, earth, squeeze, low, build, grave]

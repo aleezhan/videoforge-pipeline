@@ -1,0 +1,19 @@
+# Сердцебиение «тук-тук», 66.7 уд/мин: девять ударов по 0.9 с = ровно 8.1 с,
+# ПЕТЛЯ без шва — файл начинается за 0.1 с до удара и кончается в тишине.
+# Только низ: первый тон 48–73 Гц, второй (через 0.28 с, тише) 62–87 Гц, у
+# обоих вторая гармоника на 0.3 уровня — на динамике телефона чистые 50 Гц не
+# слышны вовсе, гармоника оставляет от удара хоть что-то. lowpass 220 Гц.
+#
+# Звук синтезирован локально ffmpeg (aevalsrc): у него нет автора, кроме
+# формулы, поэтому прав ни у кого нет.
+# Рецепт: resources/sfx/_src/build_grave_sfx.py, картинка волны и спектра:
+# resources/sfx/_preview/heartbeat_slow.png. Пик −3 dBFS, 48 кГц стерео.
+id: heartbeat_slow
+name: "Сердцебиение (медленное, петля)"
+file: heartbeat_slow.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "synthesized: ffmpeg aevalsrc, resources/sfx/_src/build_grave_sfx.py"
+kind: other
+duration_sec: 8.1
+gain_db: -8    # уровень в миксе относительно голоса
+tags: [heartbeat, heart, low, loop, tension]

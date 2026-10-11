@@ -1,0 +1,29 @@
+# «Devastation and Revenge» Кевина Маклауда — оркестровый эпик со ВСТУПЛЕНИЕМ.
+# Ради него трек и взят: первые ~48 секунд это тихий гул (−30 дБ), на 48–50 с
+# вступают струнные, духовые и барабаны и уровень прыгает на 10 дБ (замерено
+# окнами по 5 с). То есть в нём уже есть то самое «сперва тихо, потом эпично»,
+# и монтажу остаётся посадить дроп трека на свою кульминацию:
+#   music.start_sec = <секунда кульминации> − drop_sec
+#
+# ЛИЦЕНЗИЯ ТРЕБУЕТ УПОМИНАНИЯ. CC BY 4.0 — использовать можно как угодно,
+# включая коммерцию и монтаж, но имя автора обязано быть в описании ролика.
+# Строка `attribution` попадает в 06_publish/publish.md отдельным блоком;
+# без неё загрузка — нарушение лицензии.
+#
+# Content ID: музыка Маклауда зарегистрирована, и на ролик может прийти
+# заявка. Она снимается — как именно, написано у автора:
+# https://incompetech.com/music/royalty-free/youtube-contentid.html
+id: devastation_and_revenge
+name: "Devastation and Revenge (Kevin MacLeod)"
+file: devastation_and_revenge.mp3
+license: "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) — упоминание автора обязательно"
+source: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Devastation%20and%20Revenge.mp3"
+attribution: "Музыка: «Devastation and Revenge» — Kevin MacLeod (incompetech.com), лицензия CC BY 4.0"
+mood: "тёмная, тревожная, к середине — эпичная"
+energy: 0.8
+bpm: 114
+drop_sec: 49.0                # с этой секунды трек вступает в полный рост
+loop_ok: false                # это не петля: у трека есть развитие, зацикливать нечего
+tags: [cinematic, epic, dark, orchestral, drop]
+gain_db: -16.0                # относительно голоса, до даккинга: тихое вступление
+duck_db: 9.0

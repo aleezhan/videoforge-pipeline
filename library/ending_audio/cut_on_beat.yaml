@@ -1,0 +1,28 @@
+id: cut_on_beat
+decision: ending_audio
+title: Обрыв на доле
+summary: ролик кончается ударом, а не затуханием; после удара — короткая тишина
+status: recorded
+
+always: false
+applies_when:
+  music: true
+never_when:
+  has_speech: true
+
+params:
+  silence_after_sec: [0.1, 0.3]
+
+implemented_by: ""
+
+evidence:
+  - source: "предложено пользователем 05.09.2026 как третий вариант окончания"
+    measured: ""
+    date: "2026-09-05"
+    verdict: n/a
+
+notes: >-
+  Не реализовано. Нужны две вещи, которых пока нет: определение доли рядом с
+  концом ролика (детект темпа у нас есть — tools/beats.py в материалах разбора)
+  и правило, что делать с видео, если оно длиннее звука. Речь исключена:
+  оборвать реплику на полуслове хуже любого затухания.

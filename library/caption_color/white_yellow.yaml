@@ -1,0 +1,32 @@
+id: white_yellow
+decision: caption_color
+title: Белый + жёлтый
+summary: белые слова с чёрной обводкой, произносимое слово жёлтым; подложки нет
+status: implemented
+
+always: true
+applies_when: {}
+never_when: {}
+
+params:
+  color: "#FFFFFF"
+  highlight: "#FFD400"
+  outline_color: "#000000"
+  outline: 3.0
+  box_opacity: 0.0
+
+implemented_by: "caption_styles/<id>.yaml: color, highlight, outline_color, outline, box_opacity"
+
+evidence:
+  - source: "resources/caption_styles/default, kinetic_shorts, bounce_shorts"
+    measured: "контраст белого к чёрной обводке 21:1; жёлтый #FFD400 отличим от белого при кегле 56 px"
+    date: "2026-09-08"
+    verdict: works
+  - source: "QA первого шортса podcast_clips (src01_h08)"
+    measured: "белый текст на белой футболке: «сливается» на 4 кадрах из 4 — обводка 3 px не спасает"
+    date: "2026-09-07"
+    verdict: failed
+
+notes: >-
+  Граница: светлый фон под строкой (белая одежда, небо, снег). Там — подложка,
+  см. cream_on_glass.

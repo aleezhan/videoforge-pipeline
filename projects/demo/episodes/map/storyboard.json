@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "project_id": "demo",
+  "episode_id": "map",
+  "workflow": "ai_video",
+  "title": "Карта дедушки",
+  "language": "ru",
+  "aspect_ratio": "9:16",
+  "brief": "Ручная раскадровка на две сцены для проверки конвейера: режиссёр и планнер пропускаются.",
+  "resources": {
+    "character": "timur",
+    "style": "pixar3d",
+    "voice": "ru_male",
+    "niche": "kids_adventure"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "order": 1,
+      "duration_sec": 6.0,
+      "narration": "Каждое лето Тимур приезжал к дедушке. Но в этот раз он нашёл кое-что необычное.",
+      "visual_prompt": "Timur standing at the edge of a misty pine forest at sunrise, backpack on, holding an old folded map, warm golden light, wide shot, dew on the grass",
+      "motion_prompt": "slow push-in toward Timur as he lifts the map, light breeze moves the trees, gentle camera dolly forward",
+      "reference_assets": [],
+      "source": null,
+      "assets": {
+        "image": "02_images/s1_v01.png",
+        "video": "03_video/s1_v01.mp4",
+        "audio": "04_audio/s1.wav",
+        "captions": null,
+        "clip": "05_assemble/s1.mp4"
+      },
+      "checks": {
+        "image": "pass",
+        "video": "pass",
+        "audio": "pass",
+        "notes": {}
+      },
+      "attempts": {
+        "image": 1,
+        "video": 1,
+        "audio": 1
+      },
+      "measured_sec": {
+        "video": 6.0,
+        "audio": 5.64,
+        "clip": 6.0
+      },
+      "cost_usd": {
+        "image": 0.0,
+        "video": 0.0,
+        "audio": 0.0
+      },
+      "provenance": {
+        "image": "mock",
+        "video": "mock",
+        "audio": "mock"
+      }
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "duration_sec": 6.0,
+      "narration": "На карте был отмечен крестик — прямо в центре леса.",
+      "visual_prompt": "close-up of Timur's hands unfolding an old weathered treasure map with a red X mark, sunlight through the trees, shallow depth of field",
+      "motion_prompt": "hands slowly unfold the map, camera tilts up to Timur's surprised face",
+      "reference_assets": [],
+      "source": null,
+      "assets": {
+        "image": "02_images/s2_v01.png",
+        "video": "03_video/s2_v01.mp4",
+        "audio": "04_audio/s2.wav",
+        "captions": null,
+        "clip": "05_assemble/s2.mp4"
+      },
+      "checks": {
+        "image": "pass",
+        "video": "pass",
+        "audio": "pass",
+        "notes": {}
+      },
+      "attempts": {
+        "image": 1,
+        "video": 1,
+        "audio": 1
+      },
+      "measured_sec": {
+        "video": 6.0,
+        "audio": 3.64,
+        "clip": 6.0
+      },
+      "cost_usd": {
+        "image": 0.0,
+        "video": 0.0,
+        "audio": 0.0
+      },
+      "provenance": {
+        "image": "mock",
+        "video": "mock",
+        "audio": "mock"
+      }
+    }
+  ],
+  "final": {
+    "video": "05_assemble/final.mp4",
+    "captions": null,
+    "duration_sec": 12.04,
+    "inputs_fingerprint": "6ce4a208a8dd917c"
+  }
+}

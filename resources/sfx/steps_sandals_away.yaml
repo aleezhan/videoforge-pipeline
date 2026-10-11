@@ -1,0 +1,20 @@
+# Восемь лёгких шагов по песку с гравием, удаляются: каждый следующий на 2 дБ
+# тише и глуше (lowpass 8000 → 1300 Гц), темп записи — шаг в ~0.55 с.
+# Для «люди уходят от могилы, он слышит стук их сандалий».
+# ОГОВОРКА: в записи обувь не названа («grit sand»), это не именно сандалии;
+# запись сандалий на гравии (freesound 376873) не подошла — шаги тонут в
+# шуме прибоя и не отделяются друг от друга.
+#
+# ЛИЦЕНЗИЯ: CC0 1.0 — атрибуция не требуется, коммерция разрешена.
+# Файл — hq-превью freesound (mp3 128 кбит/с); оригинал отдают залогиненным.
+# Рецепт сборки и исходник: resources/sfx/_src/build_grave_sfx.py, картинка
+# волны и спектра: resources/sfx/_preview/steps_sandals_away.png. Пик −3 dBFS, 48 кГц стерео.
+id: steps_sandals_away
+name: "Лёгкие шаги по гравию (удаляются)"
+file: steps_sandals_away.wav
+license: "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) — атрибуция не требуется, коммерция разрешена"
+source: "https://freesound.org/people/savataivanov/sounds/384082/ («Foot_Step_grit_Sand.wav», автор savataivanov), CC0; скачано 19.09.2026, восемь шагов (2.76–7.12 с) выровнены по пику и затухают"
+kind: other
+duration_sec: 5
+gain_db: -8    # уровень в миксе относительно голоса
+tags: [footsteps, steps, light, gravel, sand, away, leaving]

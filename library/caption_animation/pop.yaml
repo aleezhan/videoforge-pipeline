@@ -1,0 +1,28 @@
+id: pop
+decision: caption_animation
+title: Прыжок слова
+summary: произносимое слово подпрыгивает пружиной и остаётся подсвеченным; строка стоит на месте
+status: implemented
+
+always: false
+applies_when:
+  has_speech: true
+never_when: {}
+
+params:
+  pop_scale: 124              # % кегля в верхней точке
+  pop_ms: 260                 # вся пружина: рывок → недолёт → возврат
+  pop_undershoot: 94          # % кегля в отскоке
+
+implemented_by: "caption_styles/<id>.yaml: animation: pop → core/captions._pop_dialogues (реплика ASS на слово, тег \\t)"
+
+evidence:
+  - source: "resources/caption_styles/bounce_shorts, шортсы podcast_clips"
+    measured: "короче 180 мс — дёрганно, длиннее 350 — вяло; выше 124% при трёх словах видно, как разъезжаются соседние слова"
+    date: "2026-09-07"
+    verdict: works
+
+notes: >-
+  Файл субтитров в 3–4 раза длиннее обычного: на каждое слово своя реплика ASS,
+  libass это переваривает. Пружина меняет ширину строки на пике — меньше слов в
+  реплике → можно больше pop_scale.

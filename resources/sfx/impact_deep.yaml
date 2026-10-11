@@ -1,0 +1,13 @@
+# Удар (низкий). на сам кадр смены: удар совпадает со склейкой, а не следует за ней
+#
+# Звук синтезирован локально (videoforge/core/sfx.py, videoforge resource
+# gen-sfx): у него нет автора, кроме формулы, поэтому прав ни у кого нет.
+# Формула: aevalsrc='0.9*exp(-6*t)*sin(2*PI*(55+35*exp(-14*t))*t)+0.25*exp(-40*t)*(2*random(0)-1)'
+id: impact_deep
+name: "Удар (низкий)"
+kind: impact
+file: impact_deep.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-sfx"
+duration_sec: 0.9
+gain_db: -4    # уровень в миксе относительно голоса

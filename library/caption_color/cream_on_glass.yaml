@@ -1,0 +1,32 @@
+id: cream_on_glass
+decision: caption_color
+title: Кремовый на тёмном стекле
+summary: тёплый светлый текст на полупрозрачной тёмной подложке; читается на любом фоне
+status: implemented
+
+always: false
+applies_when:
+  footage: [filmed, animation]
+never_when: {}
+
+params:
+  color: "#F5E6C8"
+  highlight: "#FFD400"
+  box_opacity: 0.6
+  box_color: "#000000"
+
+implemented_by: "caption_styles/<id>.yaml: color + box_opacity (ASS BorderStyle 3: подложка вместо обводки)"
+
+evidence:
+  - source: "QA шортса podcast_clips после подложки box_opacity 0.6"
+    measured: "контраст текста к фону под строкой — замер band_luminance ≥ 4.5:1 на всех кадрах стыков против 1.4:1 без подложки"
+    date: "2026-09-07"
+    verdict: works
+  - source: "эдит «боль» из Re:Zero S4 серия 14 — кремовая надпись вместо белой"
+    measured: "белый (255,255,255) над тёплыми кадрами читался холодным пятном; (245,230,200) сел в картинку"
+    date: "2026-09-05"
+    verdict: works
+
+notes: >-
+  Подложка закрывает часть кадра — на рисованном материале с композицией под
+  текст (anime_edit со smart_placement) лучше без неё.

@@ -1,0 +1,61 @@
+# Замер: один вопрос, фиксированные входы, ветки с одной переменной, сиды,
+# критерии приёмки и потолок денег. Запуск — `videoforge bench run <id>`,
+# оценка глазами — пульт → «Замеры» → <id>, сводка — `videoforge bench summary <id>`.
+# Каждый дубль оставляет рядом всё, чем получен: кадр (отпечаток), точный промпт,
+# граф ComfyUI как ушёл на под, веса с пода, секунды и деньги (takes/<дубль>.json).
+id: $id
+question: $question
+date: "$date"
+
+# cause — ветки отличаются одним условием при той же модели (сид общий и значим);
+# method — сравниваются разные модели/рецепты: сид у них не значит одинаковый шум,
+# и вывод относится к этим конфигурациям, а не к семействам моделей
+compare: method
+
+budget_usd: 1.0          # потолок серии: раннер останавливается ДО дубля, который его превысит
+aspect_ratio: "9:16"
+duration_sec: 5
+seeds: [11, 42]
+
+# Лестница сложности: сцены идут по порядку, и к следующей переходят, когда у
+# ветки принято min_accepted из of — правило экономии, не статистика
+stop_rule: { min_accepted: 2, of: 3 }
+
+scenes:
+  - id: S1
+    title: "малое движение без контакта"
+    frame: inputs/s1.png           # стартовый кадр, выбирает человек; нет файла — сцена пропускается
+    prompt: "The cat slowly turns its head toward the camera and back; the camera is static. Real-time speed, no slow motion."
+    # prompts: { wan480: "..." }   # свой текст для ветки, если синтаксис метода того требует
+    # video: inputs/s1_lo.mp4      # исходный клип сцены для comfy_upscale (8n+1 кадров, 24 fps)
+    negative: ""
+
+branches:
+  - id: ltx25
+    method: comfy_i2v              # comfy_i2v — картинка → клип на поде ComfyUI; mock — заглушка
+    preset: ltx25                  # ltx25 | wan480 | wan720 (videoforge/providers/comfy_http.py)
+    params: {}                     # comfy_i2v: audio: true — родной звук LTX;
+                                   # duration_sec: 3 — своя длина клипа у ветки;
+                                   # frame_rate_cond: 16 — условие темпа LTX при выводе 24
+    note: "контроль: рабочий рецепт конвейера"
+  - id: wan480
+    method: comfy_i2v
+    preset: wan480
+    note: "Wan 2.2 fp8 + lightx2v, 480p"
+  # comfy_control — движение из референсного видео (IC-LoRA Union Control):
+  #   params: { reference: inputs/ref.mp4, signal: pose | canny | depth | raw,
+  #             ic_strength: 1.0, two_stage: false, width: 1024, height: 576 }
+  # comfy_upscale — клип сцены (video) в factor раз крупнее (IC-LoRA Pixel Spatial
+  #   Upscaler; веса за воротами HF — HF_TOKEN в .env):
+  #   params: { factor: 2, ic_strength: 1.0, skip_sigmas: 0 }
+
+# Критерии приёмки человеком: каждый — pass / fail / na. Принят = ни одного fail
+# и хотя бы один pass по всем критериям. Дефект отмечается секундой, не «красиво»
+criteria:
+  - { id: identity, title: "тот же персонаж", hint: "морда, окрас, пропорции как на кадре" }
+  - { id: anatomy, title: "целое тело", hint: "лапы, голова, хвост без деформаций" }
+  - { id: trajectory, title: "читаемое движение", hint: "видно, что происходит" }
+  - { id: artifacts, title: "без артефактов", hint: "нет мерцания, лишних предметов, плывущего фона" }
+
+answer: ""               # заполняется при закрытии: что решили и куда ушёл результат
+notes: ""

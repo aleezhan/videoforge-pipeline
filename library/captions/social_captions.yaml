@@ -1,0 +1,30 @@
+id: social_captions
+decision: captions
+title: Субтитры для соцсетей
+summary: короткие реплики по 3-5 слов внизу кадра, произносимое слово выделено цветом — так подписывают речь в шортсах, рилсах и TikTok
+status: implemented
+
+always: false
+applies_when:
+  has_speech: true
+  aspect: ["9:16"]
+never_when: {}
+
+params:
+  max_words: 5
+  max_chars: 24
+  margin_pct: 22        # отступ снизу: зона интерфейса площадки плюс запас
+  mode: karaoke
+
+implemented_by: "core/captions.py + ресурс caption_styles/<id>; тайминги слов из .srt"
+
+evidence:
+  - source: "девять шортсов из подкаста, projects/smol_clips, 04-05.09.2026"
+    measured: "тайминги слов бесплатно: edge-tts WordBoundary для озвучки, json3 YouTube для нарезок"
+    date: "2026-09-05"
+    verdict: works
+
+notes: >-
+  Отступ 22% снизу — не вкус, а зона интерфейса площадки плюс запас; в плеере
+  этого не видно, смотреть `videoforge preview`. Для эдита под музыку не
+  годится: там текст — часть композиции кадра, а не подпись к речи.

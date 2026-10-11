@@ -1,0 +1,7 @@
+id: ru_male
+name: Русский мужской (Дмитрий, edge-tts)
+provider: edge
+voice: ru-RU-DmitryNeural
+rate: "+0%"
+pitch: "+0Hz"
+language: ru

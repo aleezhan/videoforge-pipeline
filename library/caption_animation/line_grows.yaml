@@ -1,0 +1,33 @@
+id: line_grows
+decision: caption_animation
+title: Строка растёт
+summary: на экране только произнесённые слова; каждое новое выезжает снизу, и строка заново встаёт по центру, сдвигая прежние
+
+always: false
+applies_when:
+  has_speech: true
+never_when: {}
+
+status: implemented
+
+params:
+  animation: grow             # в стиле субтитров
+  reveal_ms: 220              # появление слова целиком: подъём + проявление
+  reveal_rise_pct: 35         # откуда слово едет: % кегля ниже своего места
+
+implemented_by: "caption_styles/<id>.yaml: animation: grow → core/captions._reveal_dialogues(reflow=True)"
+
+evidence:
+  - source: "витрина приёма library/caption_animation/line_grows/after.mp4 (1280×720, Russo One 6%)"
+    measured: "покадрово при 25 к/с: левый край текста уезжает 568 → 270 px за пять слов — прежние слова сдвигаются на каждом новом"
+    date: "2026-09-09"
+    verdict: works
+
+notes: >-
+  Стиля-ресурса с этим приёмом сейчас нет: приём умеем, а какой стиль его
+  возьмёт — решает человек (`animation: grow` в caption_styles/<id>.yaml).
+  Отличие от «Слов на своих местах» (`words_in_place`) — движение прежних слов.
+  Плата за то, что одно слово в начале реплики стоит по центру кадра, а не с
+  краю зарезервированной строки: пока фраза набирается, текст под глазом
+  сдвигается влево. На коротких репликах (3 слова) это читается как живость, на
+  длинных — как дёрганье, поэтому длинным репликам лучше `words_in_place`.

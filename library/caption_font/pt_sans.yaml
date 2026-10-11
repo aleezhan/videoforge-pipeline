@@ -1,0 +1,26 @@
+id: pt_sans
+decision: caption_font
+title: PT Sans
+summary: спокойный гротеск с кириллицей; читается мелким кеглем — длинному видео и плашкам
+status: implemented
+
+always: true
+applies_when: {}
+never_when: {}
+
+params:
+  font: "PT Sans"
+  font_file: PTSans-Bold.ttf
+
+implemented_by: "caption_styles/<id>.yaml: font + font_file; файл лежит в videoforge/assets/fonts/ (OFL)"
+
+evidence:
+  - source: "resources/caption_styles/default и youtube_long — шрифт по умолчанию; шортсы podcast_clips"
+    measured: "кириллица и латиница в одном файле; при 5.2% короткой стороны (56 px на 1080) реплика из 5 слов читается на телефоне"
+    date: "2026-09-08"
+    verdict: works
+
+notes: >-
+  Единственный вес — Bold, поэтому bold: true в стиле ничего не меняет. Шрифт
+  передаётся libass папкой (fontsdir), а не системой: рендер одинаков на любой
+  машине.

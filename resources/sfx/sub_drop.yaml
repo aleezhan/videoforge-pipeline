@@ -1,0 +1,13 @@
+# Падение вниз. в момент замедления: падение вниз читается как «время поехало»
+#
+# Звук синтезирован локально (videoforge/core/sfx.py, videoforge resource
+# gen-sfx): у него нет автора, кроме формулы, поэтому прав ни у кого нет.
+# Формула: aevalsrc='0.85*exp(-1.5*t)*sin(2*PI*75*(1-exp(-2*t)))'
+id: sub_drop
+name: "Падение вниз"
+kind: sub_drop
+file: sub_drop.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-sfx"
+duration_sec: 1.4
+gain_db: -4    # уровень в миксе относительно голоса

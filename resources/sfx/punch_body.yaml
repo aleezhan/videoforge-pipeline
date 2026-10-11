@@ -1,0 +1,17 @@
+# Глухой удар по корпусу — низкий, мясистый, без звонкого щелчка.
+# Из трёх ударов библиотеки этот самый тёмный: ставить под удар в тело.
+#
+# ЛИЦЕНЗИЯ: CC0 1.0 — атрибуция не требуется, коммерция разрешена.
+# Файл — hq-превью freesound (mp3 128 кбит/с); оригинал отдают залогиненным.
+# Пик выровнен на −3.5 дБ, как у остальных одиночных звуков библиотеки.
+id: punch_body
+techniques:
+  - audio_layers/sfx_on_cut
+name: "Удар по корпусу"
+file: punch_body.wav
+license: "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) — атрибуция не требуется, коммерция разрешена"
+source: "https://freesound.org/people/insanity54/sounds/276600/ («body_hit.wav», автор insanity54), CC0; скачано 09.09.2026"
+kind: impact
+duration_sec: 0.84
+gain_db: -6
+tags: [punch, impact, fight, body, accent]

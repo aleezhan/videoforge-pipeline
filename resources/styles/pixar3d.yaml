@@ -1,0 +1,19 @@
+id: pixar3d
+name: 3D-мультфильм в духе Pixar
+description: Мягкий объёмный рендер, тёплый свет, выразительные лица.
+
+prompt_prefix: >
+  3D animated film still in the style of a modern Pixar feature, soft volumetric
+  lighting, expressive stylized character, detailed environment
+prompt_suffix: >
+  cinematic composition, shallow depth of field, vibrant but natural colors,
+  high detail, 4k render
+negative: >
+  photorealistic, live action, text, watermark, logo, extra fingers, deformed
+  face, blurry, low quality
+motion_hint: >
+  smooth cinematic camera movement, subtle natural motion, no sudden cuts,
+  character keeps the same appearance throughout
+checklist:
+  - Стиль — 3D-мультфильм, не фотореализм и не 2D-рисунок
+  - Нет текста, водяных знаков и логотипов в кадре

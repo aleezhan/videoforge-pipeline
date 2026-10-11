@@ -1,0 +1,70 @@
+{
+  "project_id": "demo",
+  "episode_id": "map",
+  "workflow": "ai_video",
+  "created_at": "2026-08-22T00:00:00Z",
+  "budget_usd": 2.0,
+  "providers": {
+    "image": "mock",
+    "video": "mock",
+    "tts": "mock",
+    "llm": "mock"
+  },
+  "approvals": [
+    "images",
+    "assemble"
+  ],
+  "awaiting_approval": null,
+  "stages": {
+    "director": {
+      "status": "skipped",
+      "started_at": "2026-08-22T17:05:36.119756Z",
+      "finished_at": "2026-08-22T17:05:36.123149Z",
+      "message": "раскадровка написана вручную",
+      "error": null
+    },
+    "planner": {
+      "status": "skipped",
+      "started_at": "2026-08-22T17:05:36.130120Z",
+      "finished_at": "2026-08-22T17:05:36.132872Z",
+      "message": "сцены уже есть: 2",
+      "error": null
+    },
+    "images": {
+      "status": "done",
+      "started_at": "2026-08-22T17:05:36.138208Z",
+      "finished_at": "2026-08-22T17:05:36.140433Z",
+      "message": "все картинки уже на месте",
+      "error": null
+    },
+    "video": {
+      "status": "done",
+      "started_at": "2026-08-22T17:05:36.146166Z",
+      "finished_at": "2026-08-22T17:05:36.148610Z",
+      "message": "все клипы уже на месте",
+      "error": null
+    },
+    "audio": {
+      "status": "done",
+      "started_at": "2026-08-22T17:05:36.153174Z",
+      "finished_at": "2026-08-22T17:05:36.155078Z",
+      "message": "вся озвучка уже на месте",
+      "error": null
+    },
+    "assemble": {
+      "status": "done",
+      "started_at": "2026-08-22T17:05:36.158744Z",
+      "finished_at": "2026-08-22T17:05:36.162802Z",
+      "message": "уже собрано: 05_assemble/final.mp4",
+      "error": null
+    },
+    "publish": {
+      "status": "skipped",
+      "started_at": "2026-08-22T17:05:36.167234Z",
+      "finished_at": "2026-08-22T17:05:36.170652Z",
+      "message": "publish не реализован; файл готов к ручной загрузке: 05_assemble/final.mp4",
+      "error": null
+    }
+  },
+  "ledger": []
+}

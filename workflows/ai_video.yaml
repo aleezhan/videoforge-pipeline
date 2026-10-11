@@ -1,0 +1,34 @@
+name: ai_video
+description: >
+  A new AI video from scratch: brief -> script -> storyboard -> voice-over ->
+  frames -> animation -> assembly -> publishing package.
+
+  Voice-over comes before images on purpose: the voice sets the rhythm. Scene
+  duration is measured on the finished narration rather than guessed by the
+  planner, so the paid stages below get facts, not estimates.
+
+# Frames are generated and the voice is synthetic, so the video is uploaded with
+# the "altered or synthetic content" label. Written explicitly: it is a decision.
+synthetic: true
+stages:
+  - name: director      # topic -> 01_script/: angles, gap chain, script, critic, retention
+    gate_after: true    # the script determines everything that costs money below
+  - name: planner       # script -> scenes in storyboard.json (skipped if scenes exist)
+    gate_after: true    # a human reviews the storyboard before the first paid stage
+  - name: audio         # narration -> 04_audio/ (+ .srt); sets scene duration_sec. Free.
+  - name: images        # visual_prompt + character + style -> 02_images/, reference checks
+    gate_after: true    # a human reviews images before the most expensive stage
+  - name: video         # image + motion_prompt -> 03_video/, frame checks
+  - name: edit          # material + retention.json -> 05_edit/edit_plan.json: the model
+                        # proposes deviations from "hard cut everywhere" (transitions,
+                        # accents, music steps, each with a reason); a linter fixes the
+                        # obvious and blocks the impossible. Manual plans are kept.
+  - name: assemble      # scenes per edit plan -> 05_assemble/final.mp4 (captions, music,
+                        # loudness, measurements)
+  - name: qa            # review of the final file -> 05_assemble/qa.json: measurements out
+                        # of range, captions vs platform UI zones, joins checked by a
+                        # vision model. Reports only; the human decides at the gate
+    gate_after: true
+  - name: publish       # packaging and platform checks -> 06_publish/publish.md + .json.
+                        # The upload itself is a separate command:
+                        # `videoforge publish <project>/<episode> --to youtube --yes`

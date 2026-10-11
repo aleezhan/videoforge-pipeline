@@ -1,0 +1,11 @@
+# Голос — ресурс. Подключается строкой resources.voice: william
+# Список голосов:  uv run videoforge voices --lang ru
+# Послушать:       uv run videoforge say ru-RU-DmitryNeural "Привет, это проба голоса"
+id: william
+name: "Уильям — мужской, австралиец"
+description: "Мультиязычный голос edge-tts (базовая локаль en-AU): читает по-русски, тайминги слов отдаёт — караоке-субтитры и ритм сцен работают как обычно."
+provider: edge                # edge (бесплатно); позже — elevenlabs
+voice: en-AU-WilliamMultilingualNeural  # мультиязычный, читает по-русски
+rate: "+0%"                   # скорость: "-10%", "+15%"
+pitch: "+0Hz"                 # высота: "-20Hz", "+10Hz"
+language: ru

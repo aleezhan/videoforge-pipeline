@@ -1,0 +1,19 @@
+# Тяжёлый дроп (70 BPM). на дроп: вступает там, где голос договорил свою мысль
+#
+# Петля синтезирована локально (videoforge/core/audio_synth.py,
+# videoforge resource gen-music): автора нет, значит нет и прав.
+# Это не замена настоящему треку, а то, с чем можно собрать эпизод
+# сегодня и услышать монтаж, не заводя счетов и не рискуя Content ID.
+# Формула: aevalsrc='0.9*exp(-6*mod(t,0.857))*sin(2*PI*(50+40*exp(-20*mod(t,0.857)))*mod(t,0.857))+0.08*exp(-60*mod(t,0.857))*(2*random(0)-1)+0.3*sin(2*PI*41.2*t)+0.11*(sin(2*PI*164.8*t)+sin(2*PI*196*t)+sin(2*PI*246.9*t))'
+id: sigma_drop
+name: "Тяжёлый дроп (70 BPM)"
+file: sigma_drop.wav
+license: "public domain — синтезирована локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-music"
+mood: "на дроп"
+energy: 0.8
+bpm: 70
+loop_ok: true                 # петля, её и надо повторять
+tags: [synth, loop, drums]
+gain_db: -9                # относительно голоса, до даккинга
+duck_db: 9.0

@@ -1,0 +1,3 @@
+# Скрипты для пода исполняет bash на Linux: CRLF ломает разбор («set: -: invalid
+# option», 21.09.2026 — iclora_setup.sh упал на поде). Рабочая копия — всегда LF.
+*.sh text eol=lf

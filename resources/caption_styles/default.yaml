@@ -1,0 +1,38 @@
+# Стиль субтитров по умолчанию — под вертикальные соцсети (Shorts, Reels,
+# TikTok): спокойный документальный, подсветка произносимого слова, отступ
+# снизу с запасом на интерфейс приложения. Шрифт PT Sans (OFL) из
+# videoforge/assets/fonts/. Для горизонтального видео нужен свой стиль —
+# там интерфейс закрывает всего 10% снизу, и 22% задирают строку слишком
+# высоко (см. youtube_long.yaml).
+id: default
+name: "Документальный"
+# из каких приёмов библиотеки собран (происхождение, не исполнение)
+techniques:
+  - captions/social_captions
+  - captions/overlay_plates
+  - caption_font/pt_sans
+  - caption_color/white_yellow
+  - caption_animation/karaoke_recolor
+preview_format: "9:16"
+font: "PT Sans"
+font_file: PTSans-Bold.ttf
+size_pct: 5.2
+bold: true
+uppercase: false
+color: "#FFFFFF"
+highlight: "#FFD400"
+outline_color: "#000000"
+outline: 3.0
+shadow: 0.0
+position: bottom
+# 22% = 17% (самая строгая зона интерфейса, TikTok) плюс запас.
+# Проверить глазами: videoforge preview <проект>/<эпизод>
+margin_pct: 22.0
+side_margin_pct: 6.0
+max_words: 5
+max_chars: 24
+max_gap_sec: 0.55
+mode: karaoke
+fade_ms: 60
+emphasis_color: "#FF5A36"
+emphasis_scale: 112

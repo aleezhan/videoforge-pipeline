@@ -1,0 +1,6 @@
+node_modules/
+out/
+public/__scene__*
+# звук шоурила — синтез build.py (tests/t12_motion_showreel), вернётся за 10 с
+public/showreel/
+public/reel/

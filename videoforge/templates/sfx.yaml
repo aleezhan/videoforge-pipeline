@@ -1,0 +1,15 @@
+# Звуковой эффект — ресурс. Ставится в план монтажа (05_edit/edit_plan.json,
+# список sfx: секунда финала + id) и звучит поверх голоса и музыки.
+# ПРАВА ОБЯЗАТЕЛЬНЫ: без license и source сборка эффект не возьмёт — Content ID
+# ловит и трёхсекундный свист.
+# Библиотека по умолчанию синтезируется локально: videoforge resource gen-sfx.
+id: $id
+name: $name
+file: $id.wav                 # аудиофайл рядом с этим YAML (wav/mp3/flac/ogg)
+license: ""                   # "CC0" | "CC BY 4.0 (автор …)" | "куплен: …" | "свой"
+source: ""                    # откуда: URL или описание
+kind: other                   # impact | whoosh | riser | sub_drop | click | glitch | other
+duration_sec: 0.0             # справочно: сколько звук длится
+gain_db: -6.0                 # уровень ОТНОСИТЕЛЬНО голоса; порядок дорожек не меняется:
+                              # VOICE > MUSIC > SFX, эффект громче речи — это брак
+tags: []                      # для выбора монтажом: [transition, drop, accent]

@@ -1,0 +1,30 @@
+# Крупные слова по центру для шортсов: 2–3 слова в реплике, тяжёлый плакатный
+# шрифт Russo One (OFL, кириллица), верхний регистр, подсветка текущего слова.
+id: kinetic_shorts
+name: "Кинетические (шортсы)"
+techniques:
+  - captions/social_captions
+  - caption_font/russo_one
+  - caption_color/white_yellow
+  - caption_animation/karaoke_recolor
+preview_format: "9:16"
+font: "Russo One"
+font_file: RussoOne-Regular.ttf
+size_pct: 7.5
+bold: false                   # у Russo One один вес — жирнить нечего
+uppercase: true
+color: "#FFFFFF"
+highlight: "#FFE600"
+outline_color: "#000000"
+outline: 4.0
+shadow: 0.0
+position: center
+margin_pct: 0.0
+side_margin_pct: 8.0
+max_words: 3
+max_chars: 14
+max_gap_sec: 0.45
+mode: karaoke
+fade_ms: 40
+emphasis_color: "#FF3B3B"
+emphasis_scale: 118

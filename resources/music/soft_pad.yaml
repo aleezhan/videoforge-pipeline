@@ -1,0 +1,16 @@
+# Тихая синтетическая подложка, сгенерированная ffmpeg (aevalsrc: четыре синуса с
+# медленной модуляцией, lowpass 1200 Гц). Не музыка, а проверочный трек: на нём
+# видно даккинг и уровни. Для публикации положи настоящий трек с лицензией
+# (uv run videoforge resource new music <id>) и укажи его в project.yaml.
+id: soft_pad
+name: "Мягкая подложка (синтетическая)"
+file: soft_pad.wav
+license: "public domain — сгенерирована локально ffmpeg, авторского материала нет"
+source: "ffmpeg lavfi aevalsrc, 2026-09-03"
+mood: "спокойная, нейтральная"
+energy: 0.2
+bpm: null
+loop_ok: true
+tags: [ambient, calm, neutral, test]
+gain_db: -12.0                # относительно голоса, до даккинга
+duck_db: 10.0

@@ -1,0 +1,51 @@
+# Стиль отрисовки — ресурс. Подключается строкой resources.style: flat2d_explainer
+id: flat2d_explainer
+name: Плоская 2D-анимация объясняющего научпопа
+description: >
+  Плоская векторная иллюстрация с яркой ограниченной палитрой и геометрическими
+  формами. Собран по измерениям research/kurzgesagt_de: там же взяты приёмы
+  движения (частицы поверх статичного фона, один медленный наезд) и правило
+  оставлять в кадре пустую зону под титр.
+
+# Начало каждого промпта картинки (по-английски): техника, свет, общее настроение.
+# Про людей здесь намеренно ни слова: фраза «simplified rounded characters»
+# читалась моделями как приказ дорисовать человечков в сцены без людей
+# (проверено 01.09.2026 на трёх моделях). Как рисовать людей, пишет планнер
+# в тех сценах, где люди есть.
+prompt_prefix: >
+  flat 2D vector illustration in the style of a modern science explainer channel,
+  bold geometric shapes, clean thick outlines, limited high-contrast palette on a
+  deep saturated background, soft gradient glow instead of realistic light
+
+# Конец промпта: композиция, качество. Требования «one clear focal shape» и
+# «зона под титр» убраны: на сценах, где пустота — замысел, модель выдумывала
+# фокальный объект (Сатурн, спутник — у нас, в веб-Gemini и в nano banana lite
+# по одному и тому же промпту), а «empty area for a caption» давала открытку
+# на белом поле. Композицию задаёт сцена, а не стиль.
+prompt_suffix: >
+  uncluttered centred composition that shows exactly what the scene describes
+  and nothing extra; if the scene is deliberately empty or quiet, keep it
+  empty; crisp edges, no texture noise, poster-like clarity, the deep saturated
+  background fills the entire frame
+
+# Чего не должно быть — уйдёт в промпт как "Avoid: ...".
+negative: >
+  photorealistic, 3D render, live action photo, painterly brush texture, drop
+  shadows, text, letters, numbers, watermark, logo, ui elements, cluttered
+  background, human facial features in close-up, added objects the scene does
+  not mention (satellites, moons, planets, people)
+
+# Добавка к каждому motion_prompt для видео: характер движения камеры.
+# Измерено на разобранном канале: медленный наезд/отъезд на статичной
+# иллюстрации — самый надёжный тип движения для image-to-video.
+motion_hint: >
+  one single slow continuous camera move on an otherwise static illustration,
+  drifting foreground particles for life, shapes themselves never morph or
+  deform, no cuts
+
+# Что проверяющая модель сверяет по стилю на каждом кадре.
+checklist:
+  - Стиль — плоская 2D-векторная иллюстрация, не 3D-рендер и не фотография
+  - Палитра ограниченная и контрастная, фон плотный и однотонный
+  - Нет текста, цифр, букв, водяных знаков и логотипов в кадре
+  - Есть свободная зона под титр, композиция не забита до краёв

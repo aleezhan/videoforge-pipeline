@@ -1,0 +1,17 @@
+name: analyze_channel
+description: >
+  Analysis of a YouTube channel from public metadata: all videos -> dynamics
+  and outliers -> niche and formats -> breakdown of the best videos (what is
+  said and how it is shot) -> content formula and blueprint.
+stages:
+  - name: collect       # collector -> 01_collect/channel.json (free)
+  - name: stats         # dynamics, cadence, outliers -> 02_stats/stats.json
+    gate_after: true    # a human reviews outliers before the LLM stages
+  - name: classify      # LLM: taxonomy + formats -> 03_classify/classify.json
+    gate_after: true    # a human reviews niche/formats, may edit deep_videos
+  - name: deep          # captions + LLM: hook/structure of top videos -> 04_deep/<id>/
+  - name: visual        # ffmpeg contact sheets + vision on keyframes -> 06_visual/<id>/
+  - name: formula       # cross-analysis -> 05_formula/formula.json + blueprint.md
+    gate_after: true    # a human accepts the formula before it is used in production
+  - name: distill       # contribution to the shared research/playbook.md (planner rules)
+    gate_after: true    # rules affect all future videos, so a human sees them

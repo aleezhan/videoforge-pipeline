@@ -1,0 +1,13 @@
+# Глитч. вместе с визуальным глитчем, кадр в кадр — иначе это просто помеха
+#
+# Звук синтезирован локально (videoforge/core/sfx.py, videoforge resource
+# gen-sfx): у него нет автора, кроме формулы, поэтому прав ни у кого нет.
+# Формула: aevalsrc='(2*random(0)-1)*0.5*gt(sin(2*PI*40*t),0)*exp(-4*t)', фильтры: highpass=f=800
+id: glitch
+name: "Глитч"
+kind: glitch
+file: glitch.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-sfx"
+duration_sec: 0.3
+gain_db: -10    # уровень в миксе относительно голоса

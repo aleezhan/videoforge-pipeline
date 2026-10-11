@@ -1,0 +1,27 @@
+id: russo_one
+decision: caption_font
+title: Russo One
+summary: тяжёлый плакатный, один вес; крупные слова по центру шортса
+status: implemented
+
+always: false
+applies_when:
+  duration_band: short
+never_when: {}
+
+params:
+  font: "Russo One"
+  font_file: RussoOne-Regular.ttf
+  bold: false
+
+implemented_by: "caption_styles/<id>.yaml: font + font_file; файл лежит в videoforge/assets/fonts/ (OFL)"
+
+evidence:
+  - source: "resources/caption_styles/kinetic_shorts и bounce_shorts"
+    measured: "при 7–7.5% короткой стороны и 3 словах в реплике строка не переносится на 1080×1920 с боковым полем 10%"
+    date: "2026-09-08"
+    verdict: works
+
+notes: >-
+  Один вес — bold: false, жирнить нечего. На длинном горизонтальном видео мелким
+  кеглем выглядит тяжело; там PT Sans.

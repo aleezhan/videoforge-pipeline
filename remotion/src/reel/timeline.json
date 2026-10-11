@@ -1,0 +1,17 @@
+{
+  "_comment": "Шкала моушн-шоурила: куски читает Reel.tsx, удары и звуки — build.py эпизода tests/t13_motion_reel. Секунды, 120 BPM.",
+  "fps": 60,
+  "duration": 15,
+  "bpm": 120,
+  "parts": [
+    { "id": "intro", "from": 0, "to": 1.25, "chapter": "00 / BOOT" },
+    { "id": "countdown", "from": 1.25, "to": 2.0, "chapter": "00 / BOOT" },
+    { "id": "words", "from": 2.0, "to": 3.9, "chapter": "01 / KINETIC TYPE" },
+    { "id": "grid", "from": 3.75, "to": 5.85, "chapter": "02 / PATTERN" },
+    { "id": "particles", "from": 5.75, "to": 8.0, "chapter": "03 / PARTICLES" },
+    { "id": "liquid", "from": 8.0, "to": 9.75, "chapter": "04 / DEPTH" },
+    { "id": "ui", "from": 9.75, "to": 11.5, "chapter": "05 / INTERFACE" },
+    { "id": "flash", "from": 11.5, "to": 12.75, "chapter": "06 / TEMPO" },
+    { "id": "outro", "from": 12.75, "to": 15.0, "chapter": "07 / SIGN-OFF" }
+  ]
+}

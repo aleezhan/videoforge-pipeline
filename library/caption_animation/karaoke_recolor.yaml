@@ -1,0 +1,26 @@
+id: karaoke_recolor
+decision: caption_animation
+title: Перекраска слова
+summary: строка стоит, произносимое слово меняет цвет на подсветку и остаётся таким; без движения
+status: implemented
+
+always: false
+applies_when:
+  has_speech: true
+never_when: {}
+
+params:
+  mode: karaoke
+  animation: none
+
+implemented_by: "caption_styles/<id>.yaml: mode: karaoke, animation: none → теги \\k в core/captions.build_ass"
+
+evidence:
+  - source: "resources/caption_styles/default и kinetic_shorts; первые сборки ai_video и шортсов"
+    measured: "подсветка тянется до начала следующего слова — в паузах остаётся на последнем, не гаснет; покрытие речи субтитрами меряет финал"
+    date: "2026-09-07"
+    verdict: works
+
+notes: >-
+  Спокойный вариант для длинного видео и плашек рядом: движение в строке
+  отвлекает от кадра, перекраска — нет.

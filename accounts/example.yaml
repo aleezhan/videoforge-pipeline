@@ -1,0 +1,11 @@
+# Example platform account (anonymized). Real accounts live next to it as
+# accounts/<id>.yaml + accounts/<id>/ with stats snapshots and are not published.
+id: example
+network: youtube              # youtube | tiktok | instagram
+project: demo                 # project id from projects/
+handle: "@example_channel"
+url: https://www.youtube.com/@example_channel
+channel_id: ""                # resolved on `videoforge account sync example`
+title: Example Channel
+partner: false
+notes: "Placeholder account for the demo project."

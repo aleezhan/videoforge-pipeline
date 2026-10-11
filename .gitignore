@@ -1,0 +1,69 @@
+# Python / tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+tmp/
+
+# secrets (OAuth tokens, cookies) and machine state
+.env
+.env.*
+!.env.example
+.secrets/
+.gpu/
+*.session
+cookies*
+
+# agent-local files
+CLAUDE.md
+AGENTS.md
+.claude/
+.codex/
+.agent-tasks/
+todo.md
+inbox/
+
+# private data: real channels, analytics, research, bookmarks, planning records
+features/
+accounts/*
+!accounts/example.yaml
+research/
+links/
+projects/*
+!projects/demo/
+
+# generated media (episodes are rebuilt from JSON)
+*.mp4
+*.webm
+*.mkv
+*.mov
+*.mp3
+*.wav
+# sound effects are CC0 / locally synthesized (licence in each YAML) and used by tests
+!resources/sfx/*.wav
+*.m4a
+projects/**/*.png
+projects/**/*.jpg
+projects/**/*.jpeg
+projects/**/*.webp
+resources/**/*.png
+resources/**/*.jpg
+resources/**/*.webp
+resources/**/*.safetensors
+resources/voices/samples/
+library/**/*.png
+library/**/*.jpg
+**/*.peaks.json
+**/*.motion.json
+projects/**/.run.lock
+
+# frontends
+ui/node_modules/
+ui/dist/
+remotion/node_modules/
+remotion/out/

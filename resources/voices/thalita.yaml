@@ -1,0 +1,11 @@
+# Голос — ресурс. Подключается строкой resources.voice: thalita
+# Список голосов:  uv run videoforge voices --lang ru
+# Послушать:       uv run videoforge say ru-RU-DmitryNeural "Привет, это проба голоса"
+id: thalita
+name: "Талита — женский, бразильянка"
+description: "Мультиязычный голос edge-tts (базовая локаль pt-BR): читает по-русски, тайминги слов отдаёт — караоке-субтитры и ритм сцен работают как обычно."
+provider: edge                # edge (бесплатно); позже — elevenlabs
+voice: pt-BR-ThalitaMultilingualNeural  # мультиязычный, читает по-русски
+rate: "+0%"                   # скорость: "-10%", "+15%"
+pitch: "+0Hz"                 # высота: "-20Hz", "+10Hz"
+language: ru

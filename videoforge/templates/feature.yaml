@@ -1,0 +1,26 @@
+# Возможность инструмента: от идеи до сделанного. Один файл — одна запись.
+# Пульт показывает несделанное в «Планах», сделанное — в «Возможностях»;
+# сделанная идея никуда не переезжает: меняется status, появляется how_to_use.
+# Пишется для человека без контекста разговора: summary читается за десять секунд.
+id: $id
+title: $title
+status: $status               # idea | planned | in_progress | done | dropped
+area: $area                   # script | planner | images | video | audio | edit | assemble | qa
+                              # | publish | accounts | clips | intel | resources | gpu | ui | other
+topic: $topic                 # тема внутри области: записи одной темы карта «Возможности»
+                              # показывает одной карточкой (videoforge feature areas); "" — сама по себе
+
+summary: $summary            # что это, простым языком: как объяснить другу за минуту
+
+gives: $gives                 # что получим: зачем это делать
+
+cost: $cost                   # на что влияет: время, деньги, память карты, качество, работа человека
+
+how_to_use: ""                # для done: команда, флаг, файл — где это включается
+
+requires: []                  # что нужно прежде: id других записей или внешние условия
+links: []                     # документация, чужие продукты, замеры
+source: $source               # откуда взялось: разговор такого-то числа, документ, чужой продукт
+recorded: $recorded           # дата записи
+done_at: $done_at             # дата, когда стало done (videoforge feature status <id> done)
+notes: ""                     # оговорки; для dropped причина ОБЯЗАТЕЛЬНА

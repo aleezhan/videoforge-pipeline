@@ -1,0 +1,18 @@
+# Тяжёлая оплеуха — самый звонкий и «мясистый» из трёх, с хвостом.
+# Исходник шёл на 0.0 дБ (в потолок), поэтому пик опущен до −3.5 дБ, как у
+# остальной библиотеки: звук, который громче своих соседей, слышен как брак,
+# а не как акцент.
+#
+# ЛИЦЕНЗИЯ: CC0 1.0 — атрибуция не требуется, коммерция разрешена.
+# Файл — hq-превью freesound (mp3 128 кбит/с); оригинал отдают залогиненным.
+id: punch_slap
+techniques:
+  - audio_layers/sfx_on_cut
+name: "Оплеуха (тяжёлая)"
+file: punch_slap.wav
+license: "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/) — атрибуция не требуется, коммерция разрешена"
+source: "https://freesound.org/people/njjjjjjjjjjjjjjjjjjjjjjjj/sounds/564230/ («Huge Slap in the Face»), CC0; скачано 09.09.2026"
+kind: impact
+duration_sec: 1.32
+gain_db: -6
+tags: [punch, slap, impact, fight, accent]

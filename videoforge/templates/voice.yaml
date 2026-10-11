@@ -1,0 +1,17 @@
+# Голос — ресурс. Подключается строкой resources.voice: $id
+# Список голосов:  uv run videoforge voices --lang ru
+# Послушать:       uv run videoforge say ru-RU-DmitryNeural "Привет, это проба голоса"
+id: $id
+name: $name
+provider: edge                # edge (бесплатно) | elevenlabs (ключ ELEVENLABS_API_KEY,
+                              # запуск с VF_TTS_PROVIDER=elevenlabs)
+voice: ru-RU-DmitryNeural     # edge — ShortName из списка voices; elevenlabs — voice_id
+                              # (uv run videoforge voices --provider elevenlabs)
+rate: "+0%"                   # скорость: "-10%", "+15%". Не +0% — длина сцены уже не
+                              # по WORDS_PER_SEC планнера; послушать варианты:
+                              # uv run videoforge resource gen-example voice $id --variants
+pitch: "+0Hz"                 # высота: "-20Hz", "+10Hz"
+volume: "+0%"                 # громкость: "-6%", "+10%" (сцена вправе переопределить: Scene.voice)
+language: ru
+phrase: false                 # true — озвучивать фразами (~600 знаков, несколько сцен одним
+                              # вызовом, резка по словам): интонация не рвётся на склейках

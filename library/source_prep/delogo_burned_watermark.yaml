@@ -1,0 +1,28 @@
+id: delogo_burned_watermark
+decision: source_prep
+title: Снять логотип
+summary: логотип релиз-группы убирается фильтром delogo, чистый источник искать не нужно
+status: implemented
+
+always: false
+applies_when:
+  footage: [animation, filmed]
+never_when:
+  footage: [generated]
+
+params:
+  pad_px: 6            # запас вокруг измеренной рамки знака
+
+implemented_by: "ffmpeg delogo=x:y:w:h перед всеми остальными фильтрами"
+
+evidence:
+  - source: "релиз 15-й серии Re:Zero S4 с логотипом 1XBET"
+    measured: "рамка x 1163-1249, y 26-44 при кадре 1280x720; после delogo следа не видно ни на ровном небе, ни на насыщенном кадре"
+    date: "2026-09-05"
+    verdict: works
+
+notes: >-
+  Границы знака МЕРИТЬ, а не подбирать: знак статичен, фон под ним меняется,
+  поэтому среднее по 400+ кадрам оставляет знак чётким, а фон сводит в ровное
+  поле. Проверять результат на двух кадрах — ровном (небо, стена) и
+  насыщенном: замазка виднее всего на плоском фоне.

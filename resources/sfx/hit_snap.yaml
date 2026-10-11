@@ -1,0 +1,13 @@
+# Щелчок-акцент. на слово-акцент: короткий, его задача — подчеркнуть, а не быть услышанным
+#
+# Звук синтезирован локально (videoforge/core/sfx.py, videoforge resource
+# gen-sfx): у него нет автора, кроме формулы, поэтому прав ни у кого нет.
+# Формула: aevalsrc='exp(-30*t)*(0.7*(2*random(0)-1)+0.3*sin(2*PI*220*t))', фильтры: highpass=f=400
+id: hit_snap
+name: "Щелчок-акцент"
+kind: click
+file: hit_snap.wav
+license: "public domain — синтезирован локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-sfx"
+duration_sec: 0.25
+gain_db: -12    # уровень в миксе относительно голоса

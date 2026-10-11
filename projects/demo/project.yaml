@@ -1,0 +1,34 @@
+# Проект = канал или серия видео. Эпизоды лежат в episodes/, каждый при создании
+# наследует эти настройки (дальше у эпизода своя раскадровка).
+# Правила для режиссёра и планнера — в rules.md рядом.
+id: demo
+name: "Демо"
+description: "Демо-канал детских приключений: короткие истории про Тимура, который исследует мир вокруг. Служит полигоном конвейера на реальном контенте."
+
+workflow: ai_video              # workflows/<имя>.yaml — порядок стадий
+
+channel:
+  name: "videoforge demo"           # название канала/аккаунта
+  platforms: [youtube_shorts, tiktok]       # youtube_shorts | tiktok | instagram_reels | youtube
+  language: ru           # язык сценария и озвучки
+
+video:
+  aspect_ratio: "9:16"                # 9:16 вертикаль | 16:9 горизонталь | 1:1
+  target_duration_sec: 60    # целевая длительность эпизода, сек
+  scene_duration_sec: 6.0      # один клип; Hailuo умеет 6 или 10
+  captions: true                # субтитры в сборке (стадия появится позже)
+  music: false                  # фоновая музыка (позже)
+
+# Ресурсы по id из resources/<kind>/. Сменить персонажа — поправить строку.
+resources:
+  character: timur
+  style: pixar3d
+  voice: ru_male
+  niche: kids_adventure
+
+budget_per_episode_usd: 2.0  # лимит расходов на эпизод → manifest.json
+
+rules_file: rules.md
+
+hidden: true           # образец, не канал: его читают тесты и мок-прогон
+                       # (videoforge run demo/map --mock), в пульте не показывается

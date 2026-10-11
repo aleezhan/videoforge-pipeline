@@ -1,0 +1,32 @@
+id: single_word_center
+decision: captions
+title: Одно слово по центру
+summary: одно слово песни на весь кадр, чуть выше середины; длинное слово проявляется по буквам
+status: implemented
+
+always: false
+applies_when:
+  format: [anime_edit]
+never_when:
+  has_speech: true
+
+params:
+  words_on_screen: 1
+  cap_height_ratio: 0.12      # высота прописной к высоте кадра
+  center_y_ratio: 0.43        # центр строки выше середины кадра
+  reveal_letters_from: 7      # с какой длины слова буквы проявляются по одной
+
+implemented_by: "ffmpeg drawtext по чёрному слою; цвет слова — отдельный приём caption_color/difference_blend"
+
+evidence:
+  - source: "reference reel, 19k likes"
+    measured: "высота прописной 87 px при кадре 1276x718; ширина CONVERSATION 744 px; одно слово в кадре на всём ролике"
+    date: "2026-09-05"
+    verdict: works
+
+notes: >-
+  Размер и место — здесь; чем слово красится (белым поверх, кремовым, разностью
+  с кадром) — в точке «Цвет текста». Ловушка размера: разрядки букв в drawtext
+  нет, а при ручной разрядке легко замаскировать вдвое мелкий кегль — ширину
+  слова и высоту буквы мерить РАЗДЕЛЬНО. Апостроф в drawtext обрывает граф
+  фильтров — писать IVE, IM, HES.

@@ -1,0 +1,19 @@
+# Тёмный драйв (100 BPM). под эпичный монтаж: ровный пульс, на который ложатся удары и наезды
+#
+# Петля синтезирована локально (videoforge/core/audio_synth.py,
+# videoforge resource gen-music): автора нет, значит нет и прав.
+# Это не замена настоящему треку, а то, с чем можно собрать эпизод
+# сегодня и услышать монтаж, не заводя счетов и не рискуя Content ID.
+# Формула: aevalsrc='0.9*exp(-9*mod(t,0.6))*sin(2*PI*(50+40*exp(-20*mod(t,0.6)))*mod(t,0.6))+0.35*exp(-25*mod(t-0.6,1.2))*(2*random(0)-1)+0.12*exp(-60*mod(t,0.3))*(2*random(0)-1)+0.25*sin(2*PI*55*t)+0.09*(sin(2*PI*220*t)+sin(2*PI*261.6*t)+sin(2*PI*329.6*t))'
+id: drive_dark
+name: "Тёмный драйв (100 BPM)"
+file: drive_dark.wav
+license: "public domain — синтезирована локально ffmpeg, чужого материала нет"
+source: "videoforge resource gen-music"
+mood: "под эпичный монтаж"
+energy: 0.8
+bpm: 100
+loop_ok: true                 # петля, её и надо повторять
+tags: [synth, loop, drums]
+gain_db: -11                # относительно голоса, до даккинга
+duck_db: 9.0

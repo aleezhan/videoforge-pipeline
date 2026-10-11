@@ -1,0 +1,30 @@
+name: clips_from_long
+description: >
+  Vertical short clips (Shorts / Reels / TikTok) cut from your own long-form
+  video (a podcast, a talk, a stream recording you own).
+
+  The source lives at project level, not episode level:
+  `videoforge source add <project> <file-or-own-youtube-link>` stores metadata,
+  chapters and a word-level transcript in projects/<project>/sources/<id>/
+  (YouTube auto-captions for your own upload, Whisper for a local file). Only
+  the selected segments are read in full resolution. One source yields many
+  shorts; each is its own episode with one final.mp4, and a scene is a
+  segment of the source (scenes[].source) rather than a prompt.
+
+  Moments are chosen with `source highlights` -> `highlights.html` ->
+  `source pick`, which creates the episodes.
+
+# Live footage and a live voice: the model only picks moment boundaries and
+# translates captions, it creates no pixels and no sound. An "altered or
+# synthetic content" label would misinform the viewer, so it is off.
+synthetic: false
+stages:
+  - name: cut           # source segments in full resolution -> 03_video/ + word-level .srt
+  - name: translate     # captions in the viewer's language (video.captions_language) if it
+                        # differs from the spoken one; the speech stays original
+  - name: reframe       # 16:9 -> 9:16: a window that follows faces, static within a shot
+  - name: edit          # shared with ai_video: edit plan (transitions, accents, music)
+  - name: assemble      # shared: karaoke captions from the transcript, music, measurements
+  - name: qa            # shared: review of the final file
+    gate_after: true
+  - name: publish

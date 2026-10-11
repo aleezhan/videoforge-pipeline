@@ -1,0 +1,31 @@
+# Тот же документальный стиль, но для ГОРИЗОНТАЛЬНОГО видео (обычный
+# YouTube): там интерфейс закрывает снизу около 10%, и вертикальный
+# отступ в 22% задрал бы строку на треть кадра.
+id: youtube_long
+name: "Документальный горизонтальный"
+techniques:
+  - captions/social_captions
+  - caption_font/pt_sans
+  - caption_color/white_yellow
+  - caption_animation/karaoke_recolor
+preview_format: "16:9"        # стиль писался под горизонтальный ролик
+font: "PT Sans"
+font_file: PTSans-Bold.ttf
+size_pct: 5.2
+bold: true
+uppercase: false
+color: "#FFFFFF"
+highlight: "#FFD400"
+outline_color: "#000000"
+outline: 3.0
+shadow: 0.0
+position: bottom
+margin_pct: 12.0  # нижняя треть, как принято в горизонтальном видео
+side_margin_pct: 6.0
+max_words: 5
+max_chars: 24
+max_gap_sec: 0.55
+mode: karaoke
+fade_ms: 60
+emphasis_color: "#FF5A36"
+emphasis_scale: 112
